@@ -8,7 +8,10 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 const app = express();
-
+const {
+  connectDB
+} = require("./config/db")
+connectDB()
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
