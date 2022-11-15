@@ -1,4 +1,6 @@
-
+const {
+  generateToken
+} = require("../middlewares/auth.middleware")
 const User = require('../models/user.js');
 // @desc    Auth user & get token
 // @route   POST /api/users/login
