@@ -2,11 +2,11 @@ const express = require("express")
 
 const apiRouter = require('./routes/index');
 
-const app = express();/*
+const app = express();
 const {
   connectDB
 } = require("./config/db")
-connectDB()*/
+connectDB()
 app.use('/api', apiRouter);
 // catch 404 and forward to error handler
 
