@@ -8,6 +8,6 @@ router.get('/', (req, res, next) =>{
   res.json('index').status(200);
 });
 router.get('/quiz',quizRouter );
-router.get('/auth',authRouter );
+router.get('/users',authRouter );
 
 module.exports = router;
