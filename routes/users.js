@@ -7,13 +7,17 @@ const {
   deleteUser,
   getUserById,
   updateUser,
-} = require("../controllers/user")
+} = require("../controllers/user");
+const {
+  protect,
+  protectMe
+ } = require('../middlewares/auth.middleware');
 
-router.get("/",getUsers)
-router.post("/",registerUser)#
-router.get("/user/login",authUser)
-router.get("/:id",getUserById)
-router.put("/user/:id",updateUser)
-router.delete("/user/:id",deleteUser)
-router.get("/user/:id",getUserById)
+router.get("/",protect,getUsers)
+router.post("/",registerUser)
+router.get("/user/login",authUser)  
+router.get("/:id",protect,getUserById)
+router.put("/user/:id",protect,protectMe,updateUser)
+router.delete("/user/:id",protect,protectMe ,deleteUser)
+router.get("/user/:id",protect,getUserById)
 module.exports = router;
