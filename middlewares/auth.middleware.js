@@ -1,10 +1,11 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/user.js')
 require("dotenv").config()
-const generateToken = (id) =>{
-    return jwt.verify(process.env.SECRET,id,{
-        expiresIn:"30days"
-    })
+// Generate JWT
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.SECRET, {
+    expiresIn: '30d',
+  })
 }
 const protect = async (req, res, next) => {
   let token
