@@ -7,10 +7,11 @@ const User = require('../models/user.js');
 // @access  Public
 const authUser = async (req, res) => {
   const { email, password } = req.body
-
+console.log(req.body)
   const user = await User.findOne({ email })
 
-  if (user && (await user.matchPassword(password))) {
+  if (user){
+     if(await user.matchPassword(password)) {
     res.json({
       _id: user._id,
       name: user.name,
@@ -18,9 +19,12 @@ const authUser = async (req, res) => {
       quizes: user.quizes,
       token: generateToken(user._id),
     })
-  } else {
-    res.status(401)
-    throw new Error('Invalid email or password')
+  }
+  else{
+    res.status(401).json({"error":"wrong passwod"})
+  }
+} else {
+    res.status(401).json({"error":"invalid email"})
   }
 }
 
@@ -100,7 +104,7 @@ const updateUser = async (req, res) => {
   const user = await User.findById(req.params.id)
 
   if (user) {
-for (const attr of user) {
+for (const attr in user) {
     user.attr = req.body.attr ? req.body.attr : user.attr
     
 }
