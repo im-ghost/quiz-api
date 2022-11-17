@@ -5,14 +5,14 @@ const {
     delQuiz,
     updateQuiz,
     getQuizById,
-    getUserQuizess
+    getUserQuizes
 } = require("../controllers/quiz");
 const {
   protect,
   protectMe
  } = require('../middlewares/auth.middleware');
 
-router.get("/:id",protect,getUserQuizess)
+router.get("/:id",protect,getUserQuizes)
 router.post("/",createQuiz)
 router.put("/quiz/:id",protect,protectMe,updateQuiz)
 router.delete("/quiz/:id",protect,protectMe ,delQuiz)
