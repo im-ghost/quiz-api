@@ -19,6 +19,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
+  console.log("here")
     next(createError(404));
   });
   

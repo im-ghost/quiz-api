@@ -26,18 +26,18 @@ const protect = async (req, res, next) => {
       next()
     } catch (error) {
       console.log(error)
-      res.status(401)
-      throw new Error('Not authorized')
+      res.status(401).json({"mes":"not authorized"})
     }
   }
 
   if (!token) {
-    res.status(401)
-    throw new Error('Not authorized, no token')
+    res.status(401).json({"mes":"no token"})
   }
 }
 const protectMe =(req,res,next) =>{
-    if(req.user._id === req.params.id){
+  console.log(req.user._id.toHexString())
+    if(req.user._id.toHexString() === req.params.id){
+      console.log("correct user ")
         next()
     }else{
         
