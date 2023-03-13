@@ -26,12 +26,12 @@ const protect = async (req, res, next) => {
       next()
     } catch (error) {
       console.log(error)
-      res.status(401).json({"mes":"not authorized"})
+      res.status(401).json({"error":"not authorized"})
     }
   }
 
   if (!token) {
-    res.status(401).json({"mes":"no token"})
+    res.status(401).json({"error":"no token"})
   }
 }
 const protectMe =(req,res,next) =>{

@@ -1,6 +1,6 @@
 {
     "files.autoSave": "off",
-    "editor.fontSize": 10,
+    "editor.fontSize": 12,
     "editor.wordWrap": "on",
     "files.exclude": {
         "**/.git": false

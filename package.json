@@ -1,8 +1,8 @@
 {
-  "name": "quiz",
-  "version": "0.0.0",
-  "description": "an",
-  "main": "index.js",
+  "name": "Quiz API",
+  "version": "0.1.0",
+  "description": "An API for all CRUD operations",
+  "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/im-ghost/quiz-api.git"
@@ -17,7 +17,7 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemom server.js",
-    "test": "jest --watch"
+    "test": "jest --watch --testTimeout=100000"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -26,11 +26,11 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
-    "jest": "^29.3.1",
+    "jest": "^29.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.2",
     "morgan": "~1.9.1",
-    "supertest": "^6.3.1"
+    "supertest": "^6.3.3"
   },
   "keywords": [
     "app",

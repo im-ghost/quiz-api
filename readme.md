@@ -19,7 +19,7 @@ cd quiz-api`
 3. Create a .env file in the root directory and add your environment variables 
  `
 MONGO_URI =
-secret =
+SECRET =
 PORT = 
 `
 4. Run the API using `yarn server`
@@ -84,11 +84,8 @@ const fetch = require('node-fetch');
 
 const data = { name: 'Buy milk', questions:[{
   question:"Who is the author of this API",
-  options:[{
-    a:"ad",
-    b:"Richard"
-  }],
-  correctAnswer:"b"
+  options:["ad","Richard"],
+  correctAnswer:"Richard"
 }],
 authorId:`${user._id}`};
 
