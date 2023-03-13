@@ -25,8 +25,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use("/api/quiz",quizRouter)
-app.use("/api/users",usersRouter)
+app.use("/api/v1/quiz",quizRouter)
+app.use("/api/v1/users",usersRouter)
 
 app.use(function(req, res, next) {
   console.log("here")
