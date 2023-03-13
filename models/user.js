@@ -19,10 +19,13 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    quizes:{
+    quizzes:{
       type:Array,
       default:[]
-    
+    },
+    quizTaken:{
+      type:Array,
+      default:[]
     }
   },
   {
@@ -31,12 +34,16 @@ const userSchema = mongoose.Schema(
 )
 
 userSchema.methods.matchPassword = async function (enteredPassword) {
-  if(enteredPassword === this.password){
-    return true
-  }
-  else{
-    return false
-  }
+  const res = await bcrypt.compare(enteredPassword,this.password)
+
+    if(res){
+      console.log('cirre t')
+      return true
+    }else{
+      console.log("error")
+      return false
+    }
+  console.log("waited")
 }
   
 
