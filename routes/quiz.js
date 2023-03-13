@@ -9,12 +9,14 @@ const {
 } = require("../controllers/quiz");
 const {
   protect,
-  protectMe
+  protectMe,
+  protectQuiz
  } = require('../middlewares/auth.middleware');
 
-router.get("/:id",protect,getUserQuizes)
-router.post("/",createQuiz)
-router.put("/quiz/:id",protect,protectMe,updateQuiz)
-router.delete("/quiz/:id",protect,protectMe ,delQuiz)
+
+router.post("/",protect,createQuiz)
+router.put("/quiz/:id",protect,protectQuiz,updateQuiz)
+router.delete("/quiz/:id",protect,protectQuiz,delQuiz)
 router.get("/quiz/:id",protect,getQuizById)
+router.get("/user/:id",protect,getUserQuizes)
 module.exports = router;
