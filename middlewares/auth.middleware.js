@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/user.js')
+const Quiz = require('../models/quiz.js')
 require("dotenv").config()
 // Generate JWT
 const generateToken = (id) => {
@@ -22,7 +23,6 @@ const protect = async (req, res, next) => {
 
       // Get user from the token
       req.user = await User.findById(decoded.id).select('-password')
-
       next()
     } catch (error) {
       console.log(error)
@@ -40,14 +40,26 @@ const protectMe =(req,res,next) =>{
       console.log("correct user ")
         next()
     }else{
-        
+         console.log("here")
       console.log(error)
-      res.status(401)
-      throw new Error('Not authorized')
+      res.status(401).json({"error":'Not authorized'})
+    }
+}
+const protectQuiz =async (req,res,next) =>{
+  const quiz = await Quiz.findById(req.params.id)
+  console.log(quiz)
+    if(req.user._id.toHexString() === quiz.authorId){
+      console.log("correct user ")
+      req.quiz = quiz
+        next()
+    }else{
+         console.log("here")
+      res.status(401).json({"error":'Not authorized'})
     }
 }
 module.exports = {
     generateToken,
     protect,
-    protectMe
+    protectMe,
+    protectQuiz
 }
