@@ -1,6 +1,7 @@
 const {
   generateToken
 } = require("../middlewares/auth.middleware")
+const bcrypt = require("bcryptjs")
 const User = require('../models/user.js');
 // @desc    Auth user & get token
 // @route   POST /api/users/login
@@ -9,14 +10,14 @@ const authUser = async (req, res) => {
   const { email, password } = req.body
 console.log(req.body)
   const user = await User.findOne({ email })
-
   if (user){
      if(await user.matchPassword(password)) {
-    res.json({
+    res.status(200).json({
       _id: user._id,
       name: user.name,
       email: user.email,
-      quizes: user.quizes,
+      quizzes: user.quizzes,
+      quizTaken: user.quizTaken,
       token: generateToken(user._id),
     })
   }
@@ -36,16 +37,20 @@ const registerUser = async (req, res) => {
   const { name, email, password } = req.body
 console.log(req.body)
   const userExists = await User.findOne({ email })
-
+var pass= password;
+const salt = await bcrypt.genSalt(10)
+const hash = await bcrypt.hash(password,salt)
+pass = hash 
   if (userExists) {
-    res.status(400)
-    throw new Error('User already exists')
+    res.status(400).json({"error":'User already exists'})
   }
 
   const user = await User.create({
     name:name,
     email:email,
-    password: password
+    password: pass,
+    quizzes:[],
+    quizTaken:[]
   })
 
   if (user) {
@@ -53,12 +58,12 @@ console.log(req.body)
       _id: user._id,
       name: user.name,
       email: user.email,
-      quizes: user.quizes,
+      quizzes: user.quizzes,
+      quizTaken: user.quizTaken,
       token: generateToken(user._id),
     })
   } else {
-    res.status(400)
-    throw new Error('Invalid user data')
+    res.status(400).json({"error":'Invalid user data'})
   }
 }
 // @desc    Get all users
@@ -105,6 +110,15 @@ const updateUser = async (req, res) => {
 
   if (user) {
 for (const attr in user) {
+  if(attr === "password"){
+var pass= req.body.password;
+const salt = await bcrypt.genSalt(10)
+const hash = await bcrypt.hash(req.body.password,salt)
+console.log(hash)
+pass = hash 
+console.log(hash)
+user.password = pass;
+  }
     user.attr = req.body.attr ? req.body.attr : user.attr
     
 }
@@ -117,6 +131,13 @@ for (const attr in user) {
   }
 }
 
+
+async function getUserQuizAttempts(req, res) {
+  const { id } = req.params
+  const { quizTaken } = await User.findById(id)
+
+  res.status(200).json(quizTaken)
+}
 module.exports = {
   authUser,
   registerUser,
@@ -124,4 +145,5 @@ module.exports = {
   deleteUser,
   getUserById,
   updateUser,
+  getUserQuizAttempts
 }
