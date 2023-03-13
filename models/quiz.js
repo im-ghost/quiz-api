@@ -11,19 +11,20 @@ const quizSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String
+    },
     time: {
-      type: Date,
-      required: true
+      type: Date
     },
     questions:{
       type:Array,
       default:[]
     
     },
-    answers:{
+    score:{
       type:Array,
       default:[]
-    
     }
   },
   {
