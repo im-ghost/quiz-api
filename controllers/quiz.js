@@ -37,15 +37,14 @@ const delQuiz =  async (req,res,next )=>{
 const updateQuiz = async (req,res,next )=>{
 
     const quiz = req.quiz;
-
     if (quiz) {
   for (const attr in quiz) {
-      quiz.attr = req.body.attr ? req.body.attr : quiz.attr
-      
+      quiz.attr = req.body.attr ? req.body.attr : quiz.attr;
+    
   }
       const updatedQuiz = await quiz.save()
   
-      res.json(updatedQuiz)
+      res.status(200).json(updatedQuiz)
     } else {
       res.status(404).json({"error":'Quiz not found'})
     }
@@ -64,6 +63,7 @@ const getUserQuizes = async (req,res,next )=>{
     
   const user = await User.findById(id)
   if(user){
+    console.log(user)
   const limit = req.query.limit || 10
   const startIndex = req.query.start ||  0 
   const endIndex =  limit

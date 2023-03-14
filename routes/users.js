@@ -16,7 +16,6 @@ const {
 router.get("/",protect,getUsers)
 router.post("/",registerUser)
 router.post("/user/login",authUser)  
-router.get("/:id",protect,getUserById)
 router.put("/user/:id",protect,protectMe,updateUser)
 router.delete("/user/:id",protect,protectMe ,deleteUser)
 router.get("/user/:id",protect,getUserById)

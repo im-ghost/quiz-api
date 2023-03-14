@@ -1,5 +1,5 @@
 {
-  "name": "Quiz API",
+  "name": "quiz-api",
   "version": "0.1.0",
   "description": "An API for all CRUD operations",
   "main": "server.js",
