@@ -10,7 +10,7 @@ const generateToken = (id) => {
 }
 const protect = async (req, res, next) => {
   let token
-
+console.log(req.headers)
   if (
     req.headers.authorization
   ) {
@@ -31,6 +31,7 @@ const protect = async (req, res, next) => {
   }
 
   if (!token) {
+    console.log("no token")
     res.status(401).json({"error":"no token"})
   }
 }

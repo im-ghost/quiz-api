@@ -14,10 +14,13 @@ const {
   connectDB
 } = require("./config/db")
 connectDB()
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  allowedHeaders: ['Authorization', 'Content-Type'],
+};
 
-app.use(cors({
-  origin:"http://localhost:5173"
- })) 
+app.use(cors(corsOptions));
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -45,6 +48,6 @@ app.use(function(req, res, next) {
   })
 const port = process.env.PORT || 5000
 app.listen(port,()=>{
-  console.log("running")
+  console.log("running on port:" + port)
 })
 module.exports = app

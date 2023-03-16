@@ -15,6 +15,7 @@ console.log(req.body)
     res.status(200).json({
       _id: user._id,
       name: user.name,
+      password:user.password,
       email: user.email,
       quizzes: user.quizzes,
       quizTaken: user.quizTaken,
@@ -61,6 +62,7 @@ pass = hash
       quizzes: user.quizzes,
       quizTaken: user.quizTaken,
       token: generateToken(user._id),
+       password:user.password,
     })
   } else {
     res.status(400).json({"error":'Invalid user data'})
