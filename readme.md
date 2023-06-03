@@ -12,16 +12,21 @@ This is a Node.js API that allows users to take quizzes . Users can create, read
 To install and run the API, follow these steps:
 
 1. Clone the repository
- `git clone https://github.com/im-ghost/quiz-api.git
-cd quiz-api`
+ `git clone https://github.com/im-ghost/quiz-api.git`
+ 
+ 
+`cd quiz-api`
+
 2. Install the required dependencies by running
  `yarn`
 3. Create a .env file in the root directory and add your environment variables 
- `
-MONGO_URI =
-SECRET =
-PORT = 
-`
+ 
+`MONGO_URI = `
+
+`SECRET = `
+
+`PORT = `
+
 4. Run the API using `yarn server`
 
 ## Usage
