@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const cors = require("cors")
-
+const indexRouter = require("./routes/index")
 const usersRouter = require('./routes/users');
 const quizRouter = require('./routes/quiz');
 
@@ -30,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/api/v1/quiz",quizRouter)
 app.use("/api/v1/users",usersRouter)
+app.use('/api/to',indexRouter);
 
 app.use(function(req, res, next) {
   console.log("here")
