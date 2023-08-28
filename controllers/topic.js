@@ -21,3 +21,10 @@ const editTopic = async (req,res)=>{
     res.status(200).json({topic:newTopic})
   }
 }
+
+
+module.exports ={
+  editTopic,
+  createTopic,
+  getTopics
+}
