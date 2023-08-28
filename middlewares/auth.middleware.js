@@ -9,7 +9,7 @@ const generateToken = (id) => {
   })
 }
 const protect = async (req, res, next) => {
-  /*let token
+  let token
 console.log(req.headers)
   if (
     req.headers.authorization
@@ -33,11 +33,10 @@ console.log(req.headers)
   if (!token) {
     console.log("no token")
     res.status(401).json({"error":"no token"})
-  }*/
-  next()
+  }
 }
 const protectMe =(req,res,next) =>{
- /* console.log(req.user._id.toHexString())
+  console.log(req.user._id.toHexString())
     if(req.user._id.toHexString() === req.params.id){
       console.log("correct user ")
         next()
@@ -45,11 +44,10 @@ const protectMe =(req,res,next) =>{
          console.log("here")
       console.log(error)
       res.status(401).json({"error":'Not authorized'})
-    }*/
-  next()
+    }
 }
 const protectQuiz =async (req,res,next) =>{
-  /*const quiz = await Quiz.findById(req.params.id)
+  const quiz = await Quiz.findById(req.params.id)
   console.log(quiz)
     if(req.user._id.toHexString() === quiz.authorId){
       console.log("correct user ")
@@ -58,8 +56,7 @@ const protectQuiz =async (req,res,next) =>{
     }else{
          console.log("here")
       res.status(401).json({"error":'Not authorized'})
-    }*/
-  next()
+    }
 }
 module.exports = {
     generateToken,
